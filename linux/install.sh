@@ -19,8 +19,9 @@ function runImportantCommand(){
 	runCommand "$1"
 	if [ $? -ne 0 ]; then
 		echo "Stop installing"
+  		exit $? 
 	fi
-	exit $? 
+
 }
 function runOptionalCommand(){
 	runCommand "$1"
