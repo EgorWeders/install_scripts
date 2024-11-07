@@ -4,7 +4,12 @@ if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
-
+#very basic tools such as packet manager
+function essentialsInstall(){
+	echo "Installing essentials"
+	runImportantCommand "apt install mc"
+	
+}
 #ipconfig , proxies setting
 function netToolsInstall(){
 		echo "Installing net tools..."
