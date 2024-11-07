@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Utils loaded"
 function runCommand(){
 	commandString="$1"
 		echo "Command "${commandString}""
@@ -29,33 +30,7 @@ function runOptionalCommand(){
 	return $? 
 }
 
-#very basic tools such as packet manager
-function essentialsInstall(){
-	echo "Installing essentials"
-	runImportantCommand "type ip"
-	runImportantCommand "type ip"
-}
 
-#ipconfig , proxies setting
-function netToolsInstall(){
-		echo "Installing net tools..."
-}
 
-#zsh etc.
-function cliToolsInstall(){
-		echo "Installing cli tools..."
-}
-#configure installed basic tools
-function configureBasic(){
-		echo "Configure basic tools..."
-}
 
-#entry for basic install
-function installBasic(){
-	echo "Initital basic install..."
-	essentialsInstall
-	netToolsInstall
-	cliToolsInstall
-	configureBasic
-	echo "Basic install complete"
-}
+
