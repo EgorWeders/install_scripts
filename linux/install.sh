@@ -27,16 +27,47 @@ function runOptionalCommand(){
 	if [ $? -ne 0 ]; then
 		echo "But execution will go on"
 	fi
-	return 0
+	return $? 
 }
+
+#very basic tools such as packet manager
+function essentialsInstall(){
+	echo "Installing essentials"
+}
+
+#ipconfig , proxies setting
+function netToolsInstall(){
+		echo "Installing net tools..."
+}
+
+#zsh etc.
+function cliToolsInstall(){
+		echo "Installing cli tools..."
+}
+#configure installed basic tools
+function configureBasic(){
+		echo "Configure basic tools..."
+}
+
+#entry for basic install
+function installBasic(){
+	echo "Initital basic install..."
+	essentialsInstall
+	netToolsInstall
+	cliToolsInstall
+	configureBasic
+	echo "Basic install complete"
+}
+
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
-
 echo "Running as root"
 echo "Initital install"
+installBasic
+
 #empty
 runOptionalCommand
 #optional
@@ -47,3 +78,4 @@ runImportantCommand "echo pipi und kaki"
 runImportantCommand "cd /FOOO"
 #not reachable
 runOptionalCommand "echo in pipikakaland"
+
