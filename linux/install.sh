@@ -8,7 +8,7 @@ function runCommand(){
 		echo "Empty command!"
 		return 1
 	fi
-	eval ${commandString}
+	eval "${commandString}  > /dev/null"
 	if [ $? -ne 0 ]; then
 		echo "Command Failed"
 		return 2
@@ -19,9 +19,9 @@ function runImportantCommand(){
 	runCommand "$1"
 	if [ $? -ne 0 ]; then
 		echo "Stop installing"
-  		exit $? 
+		exit $? 
 	fi
-
+	return $? 
 }
 function runOptionalCommand(){
 	runCommand "$1"
@@ -34,6 +34,8 @@ function runOptionalCommand(){
 #very basic tools such as packet manager
 function essentialsInstall(){
 	echo "Installing essentials"
+	runImportantCommand "type ip"
+	runImportantCommand "type ipd"
 }
 
 #ipconfig , proxies setting
@@ -65,10 +67,14 @@ if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
+
+
+
 echo "Running as root"
 echo "Initital install"
 installBasic
 
+#Tests
 #empty
 runOptionalCommand
 #optional
